@@ -5,43 +5,34 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #222;
-}
-
-.items {
-  width: 400px;          /* smaller than container for horizontal scroll */
-  height: 300px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  border: 2px solid #fff;
-  white-space: nowrap;
-  position: relative;
-  user-select: none;
-  cursor: grab;
-  background: rgba(255,255,255,0.05);
-}
-
-.items.active {
-  cursor: grabbing;
+  background-color: #222;
 }
 
 .container {
-  width: 1200px;          /* wide enough to scroll */
+  width: 500px;
+  height: 500px;
+  border: 2px solid #fff;
   position: relative;
-  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .cube {
   width: 100px;
   height: 100px;
-  background: dodgerblue;
-  display: inline-flex;
+  background-color: dodgerblue;
+  color: white;
+  display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
   font-size: 30px;
   font-weight: bold;
-  margin: 5px;
   position: absolute;
-  cursor: pointer;
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow 0.2s;
+}
+
+.cube.dragging {
+  cursor: grabbing;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
