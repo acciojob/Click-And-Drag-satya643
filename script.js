@@ -13,7 +13,7 @@ cubes.forEach((cube, index) => {
   cube.style.top = `${row * 110}px`;
 });
 
-// Mouse down - start dragging
+// Mouse down - start dragging cube
 cubes.forEach(cube => {
   cube.addEventListener('mousedown', e => {
     selectedCube = cube;
@@ -37,7 +37,7 @@ document.addEventListener('mousemove', e => {
   let left = e.clientX - containerRect.left - offsetX;
   let top = e.clientY - containerRect.top - offsetY;
 
-  // Boundary constraints
+  // Keep cube within container boundaries
   left = Math.max(0, Math.min(left, container.clientWidth - cubeRect.width));
   top = Math.max(0, Math.min(top, container.clientHeight - cubeRect.height));
 
@@ -51,4 +51,35 @@ document.addEventListener('mouseup', () => {
     selectedCube.classList.remove('dragging');
     selectedCube = null;
   }
+});
+
+// Optional: Drag to scroll container horizontally
+let isDraggingContainer = false;
+let startX;
+let scrollLeft;
+
+container.addEventListener('mousedown', e => {
+  if (e.target.classList.contains('cube')) return; // skip cubes
+  isDraggingContainer = true;
+  startX = e.pageX - container.offsetLeft;
+  scrollLeft = container.scrollLeft;
+  container.classList.add('active');
+});
+
+container.addEventListener('mouseleave', () => {
+  isDraggingContainer = false;
+  container.classList.remove('active');
+});
+
+container.addEventListener('mouseup', () => {
+  isDraggingContainer = false;
+  container.classList.remove('active');
+});
+
+container.addEventListener('mousemove', e => {
+  if (!isDraggingContainer) return;
+  e.preventDefault();
+  const x = e.pageX - container.offsetLeft;
+  const walk = x - startX;
+  container.scrollLeft = scrollLeft - walk;
 });
