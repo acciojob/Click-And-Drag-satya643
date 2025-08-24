@@ -1,7 +1,4 @@
-.items {
-  width: 400px; /* smaller than total container width */
-  overflow-x: scroll;
-}body {
+body {
   margin: 0;
   font-family: sans-serif;
   display: flex;
@@ -12,9 +9,9 @@
 }
 
 .items {
-  width: 400px;           /* smaller than container for scroll */
+  width: 400px;          /* smaller than container for horizontal scroll */
   height: 300px;
-  overflow-x: scroll;     /* enable horizontal scroll */
+  overflow-x: scroll;
   overflow-y: hidden;
   border: 2px solid #fff;
   white-space: nowrap;
@@ -29,7 +26,7 @@
 }
 
 .container {
-  width: 1200px;          /* wide enough to allow horizontal scroll */
+  width: 1200px;          /* wide enough to scroll */
   position: relative;
   height: 100%;
 }
@@ -47,10 +44,4 @@
   margin: 5px;
   position: absolute;
   cursor: pointer;
-}
-
-
-.container {
-  width: 1200px; /* wide enough to allow horizontal scroll */
-  position: relative;
 }
